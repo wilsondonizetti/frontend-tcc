@@ -21,8 +21,8 @@ export class AuthService {
 
     login(user: IUser) {
       if (user.userName !== '' && user.password !== '' ) { // {3}
-        this.http.post('http://api.wilsondonizetti.eti.br/api/account/authenticate', {user: user.userName, password: user.password})
-        .subscribe();
+        // this.http.post('http://api.wilsondonizetti.eti.br/api/account/authenticate', {user: user.userName, password: user.password})
+        // .subscribe();
         this.loggedIn.next(true);
         this.router.navigate(['/']);
       }
