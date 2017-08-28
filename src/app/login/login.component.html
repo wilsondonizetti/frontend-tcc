@@ -1,3 +1,24 @@
-<p>
-  login works!
-</p>
+<div class="signin-content">
+  <div class="card">
+    <div class="card-body">
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <h4 class="card-title">Login</h4>
+        <h6 class="card-subtitle mb-2 text-muted">Autenticação</h6>
+        <p class="card-text">Trabalho de TCC - Arquitetura de softwares</p>
+        <div class="form-group">
+          <input class="form-control" placeholder="User" formControlName="userName" required>
+          <span class="error" *ngIf="isFieldInvalid('userName')">
+           Por favor informe o usuário
+         </span>
+        </div>
+        <div class="form-group">
+          <input type="password" class="form-control" placeholder="Password" formControlName="password" required>
+          <span class="error" *ngIf="isFieldInvalid('password')">
+            Por favor informe a senha
+          </span>
+        </div>
+        <button class="btn btn-primary" type="submit">Login</button>
+      </form>
+    </div>
+  </div>
+</div>
