@@ -1,6 +1,6 @@
+import { IUser } from './../iuser';
 import { JsonFormatter } from 'tslint/lib/formatters';
 import { Http } from '@angular/http';
-import { IUser } from './iuser';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';

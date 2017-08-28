@@ -16,7 +16,7 @@ import { HttpModule } from '@angular/http';
     FormsModule,
     ReactiveFormsModule
   ],
-  declarations: [PreloaderComponent],
+  declarations: [PreloaderComponent, MenuTopComponent],
   exports: [MenuTopComponent, PreloaderComponent],
   providers: [AuthService, AuthGuard, HttpService, LoaderService]
 })
