@@ -8,7 +8,7 @@ export class AppSettings {
    *
    */
   constructor() {
-    this.SERVICE_URLBASE = 'http://api.wilsondonizetti.et.br/api';
+    this.SERVICE_URLBASE = 'http://api.wilsondonizetti.eti.br/api';
     this.AMBIENTE = 'Desenvolvimento';
     this.VERSAO = '1.0.0';
     this.CUSTOM_PATH = '';
