@@ -27,4 +27,8 @@ export class MenuTopComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
 
   }
+
+  logout() {
+    this.svcAuth.logout();
+  }
 }

@@ -1,30 +1,67 @@
 <p>
-  home works!
+  Tela inicial do Prototipo
 </p>
 
-<div class="card">
-  <h4 class="card-header">Produtos</h4>
-  <div class="card-body">
-    <h4 class="card-title">Lista de Produtos</h4>
-    <p class="card-text">Exibir produtos cadastrados na base de dados</p>
-    <button type="button" class="btn btn-primary" (click)="buscarProdutos()"><i class="material-icons">search</i>Buscar Produtos</button>
-  <br/>
-    <div class="row" style="padding-top: 15px;">
-      <div class="col-xs-12">
-        <div class="list-group">
-          <a href="#" class="list-group-item list-group-item-action flex-column align-items-start active">
-            <div class="d-flex w-100 justify-content-between">
-              <h5 class="mb-1">List group item heading</h5>
-              <small>3 days ago</small>
-            </div>
-            <p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-            <small>Donec id elit non mi porta.</small>
-          </a>
+<div class="row">
+    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+    <div class="card">
+      <h4 class="card-header">Produtos</h4>
+      <div class="card-body">
+        <h4 class="card-title">Lista de Produtos</h4>
+        <p class="card-text">Exibir produtos cadastrados na base de dados</p>
+        <button type="button" class="btn btn-primary" (click)="buscarProdutos()"><i class="material-icons">search</i>Buscar Produtos</button>
+        <br/>
+        <div class="row" style="padding-top: 15px;">
+            <table class="table">
+              <thead class="thead-inverse">
+                <tr>
+                  <th>#</th>
+                  <th>Nome</th>
+                  <th>UN</th>
+                  <th>Preço</th>
+                  <th>Fabricante</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let produto of produtos">
+                  <th scope="row">{{produto.ProdutoID}}</th>
+                  <td>{{produto.Nome}}</td>
+                  <td>{{produto.UN}}</td>
+                  <td>{{produto.Preco | currency:'BRL':true:'.2'}}</td>
+                  <td>{{produto.Fabricante.Nome}}</td>
+                </tr>
+              </tbody>
+            </table>
         </div>
       </div>
     </div>
+  </div>
+  <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+    <div class="card">
+      <h4 class="card-header">Clientes</h4>
+      <div class="card-body">
+        <h4 class="card-title">Lista de Clientes</h4>
+        <p class="card-text">Exibir clientes cadastrados na base de dados</p>
+        <button type="button" class="btn btn-primary" (click)="buscarClientes()"><i class="material-icons">search</i>Buscar Clientes</button>
+        <br/>
+        <div class="row" style="padding-top: 15px;">
 
+              <table class="table">
+                  <thead class="thead-inverse">
+                    <tr>
+                      <th>#</th>
+                      <th>Nome</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let cliente of clientes">
+                      <th scope="row">{{cliente.ClienteID}}</th>
+                      <td>{{cliente.Nome}}</td>
+                    </tr>
+                  </tbody>
+                </table>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
-
-

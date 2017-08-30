@@ -14,7 +14,6 @@ export class PreloaderComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.svcLoader.isLoading.subscribe(value => {
       this.loader = value;
-      console.log(value);
     });
   }
 

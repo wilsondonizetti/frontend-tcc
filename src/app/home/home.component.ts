@@ -8,28 +8,38 @@ import { Headers } from '@angular/http';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-
   produtos: any[];
+  clientes: any[];
   private settings: AppSettings;
-  constructor(
-    private svcHttp: HttpService
-  ) {
+  constructor(private svcHttp: HttpService) {
     this.settings = new AppSettings();
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   buscarProdutos() {
-
-    this.svcHttp.get(`${this.settings.SERVICE_URLBASE}/produto/list`, {
-      headers: new Headers({ Token: localStorage.getItem('token-tcc'),
-      'Content-Type': 'application/json' })
-    }).subscribe((dados: any) => {
-      console.log(dados);
-      this.produtos = dados;
-    });
-    console.log('teste');
+    this.svcHttp
+      .get(`${this.settings.SERVICE_URLBASE}/produto/list`, {
+        headers: new Headers({
+          Token: localStorage.getItem('token-tcc'),
+          'Content-Type': 'application/json'
+        })
+      })
+      .subscribe((dados: any) => {
+        this.produtos = dados;
+      });
   }
 
+  buscarClientes() {
+    this.svcHttp
+      .get(`${this.settings.SERVICE_URLBASE}/cliente/list`, {
+        headers: new Headers({
+          Token: localStorage.getItem('token-tcc'),
+          'Content-Type': 'application/json'
+        })
+      })
+      .subscribe((dados: any) => {
+        this.clientes = dados;
+      });
+  }
 }
