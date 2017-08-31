@@ -10,7 +10,6 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 @Injectable()
 export class AuthService {
-
   private loggedIn = new BehaviorSubject<boolean>(false); // {1}
   private settings: AppSettings;
 
@@ -27,16 +26,20 @@ export class AuthService {
   }
 
   login(user: IUser) {
-    if (user.userName !== '' && user.password !== '') { // {3}
-      this.svcHttp.post(`${this.settings.SERVICE_URLBASE}/account/authenticate?user=${user.userName}&password=${user.password}`,
-        undefined)
+    if (user.userName !== '' && user.password !== '') {
+      // {3}
+      this.svcHttp
+        .post(
+          `${this.settings
+            .SERVICE_URLBASE}/account/authenticate?user=${user.userName}&password=${user.password}`,
+          undefined
+        )
         .subscribe((dados: TokenModel) => {
           if (dados.Success) {
             localStorage.setItem('token-tcc', dados.Token);
             this.loggedIn.next(true);
             this.zone.run(() => {
               this.router.navigate(['/']);
-              window.location.href = window.location.origin;
             });
 
             // window.location.replace(window.location.origin);
@@ -48,11 +51,11 @@ export class AuthService {
             });
           }
         });
-
     }
   }
 
-  logout() {                            // {4}
+  logout() {
+    // {4}
     this.loggedIn.next(false);
     localStorage.setItem('token-tcc', undefined);
     this.zone.run(() => {
