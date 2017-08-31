@@ -4,7 +4,7 @@ import { HttpService } from './http.service';
 import { IUser } from './../iuser';
 import { JsonFormatter } from 'tslint/lib/formatters';
 import { Http } from '@angular/http';
-import { Injectable } from '@angular/core';
+import { Injectable, NgZone } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
@@ -20,7 +20,8 @@ export class AuthService {
 
   constructor(
     private router: Router,
-    private svcHttp: HttpService
+    private svcHttp: HttpService,
+    private zone: NgZone
   ) {
     this.settings = new AppSettings();
   }
@@ -33,11 +34,18 @@ export class AuthService {
           if (dados.Success) {
             localStorage.setItem('token-tcc', dados.Token);
             this.loggedIn.next(true);
-            this.router.navigate(['/']);
+            this.zone.run(() => {
+              this.router.navigate(['/']);
+              window.location.href = window.location.origin;
+            });
 
+            // window.location.replace(window.location.origin);
+            // window.location.href = window.location.origin;
           } else {
             this.loggedIn.next(false);
-            this.router.navigate(['/login']);
+            this.zone.run(() => {
+              this.router.navigate(['/login']);
+            });
           }
         });
 
@@ -47,6 +55,8 @@ export class AuthService {
   logout() {                            // {4}
     this.loggedIn.next(false);
     localStorage.setItem('token-tcc', undefined);
-    this.router.navigate(['/login']);
+    this.zone.run(() => {
+      this.router.navigate(['/login']);
+    });
   }
 }

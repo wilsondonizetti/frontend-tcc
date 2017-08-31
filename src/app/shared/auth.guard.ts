@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, NgZone } from '@angular/core';
 import {
   CanActivate,
   ActivatedRouteSnapshot,
@@ -13,7 +13,8 @@ import { AuthService } from './services/auth.service';
 export class AuthGuard implements CanActivate {
   constructor(
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private zone: NgZone
   ) { }
 
   canActivate(
@@ -24,7 +25,9 @@ export class AuthGuard implements CanActivate {
       .take(1)                               // {2}
       .map((isLoggedIn: boolean) => {        // {3}
         if (!isLoggedIn) {
-          this.router.navigate(['/login']);  // {4}
+          this.zone.run(() => {
+            this.router.navigate(['/login']);
+          });  // {4}
           return false;
         }
         return true;
