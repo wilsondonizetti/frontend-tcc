@@ -30,9 +30,9 @@ export class AuthService {
       // {3}
       this.svcHttp
         .post(
-          `${this.settings
-            .SERVICE_URLBASE}/account/authenticate?user=${user.userName}&password=${user.password}`,
-          undefined
+        `${this.settings
+          .SERVICE_URLBASE}/account/authenticate?user=${user.userName}&password=${user.password}`,
+        undefined
         )
         .subscribe((dados: TokenModel) => {
           if (dados.Success) {
