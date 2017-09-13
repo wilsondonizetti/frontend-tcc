@@ -8,7 +8,7 @@ import { Routes, RouterModule } from '@angular/router';
 const routes: Routes = [
   { path: '', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
-  { path: '', component: MenuTopComponent, outlet: 'menuTop' },
+  { path: '', component: MenuTopComponent, outlet: 'menuTop' }
 ];
 
 @NgModule({
